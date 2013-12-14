@@ -57,12 +57,6 @@ alias psmem='ps auxf | sort -nr -k 4'
 alias psmem10='ps auxf | sort -nr -k 4 | head -10'
 alias pscpu='ps auxf | sort -nr -k 3'
 alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
-alias cpuinfo='lscpu'
-alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
-
-alias wget='wget -c'
-alias chrome='/opt/google/chrome/chrome'
-alias browser=chrome
 
 alias df='df -H'
 alias du='du -ch'

@@ -50,6 +50,8 @@ if [[ $system == 'OSX' ]]; then
 	source $DOTFILES_HOME/zsh/rc.osx.zsh
 fi
 
+source $DOTFILES_HOME/aliases
+source $DOTFILES_HOME/tools
 
 if [[ -f ~/.dir_colors && ( -x /usr/local/bin/dircolors || -x /usr/bin/dircolors ) ]]; then
     eval `dircolors ~/.dir_colors`
