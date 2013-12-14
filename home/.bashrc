@@ -1,5 +1,5 @@
 #!/bin/bash
-. $HOME/.homesick/repos/rc-files/bash/rc
+. $HOME/.homesick/repos/dotfiles/bash/rc
 
 
 
