@@ -3,7 +3,7 @@
 	email =  evgeny@everything.me
 
 [credential]
-        helper = GIT_CREDENTIAL_HELPER
+         #        helper = GIT_CREDENTIAL_HELPER
 [alias]
         co = checkout
         promote = !$ZSH/bin/git-promote
