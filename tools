@@ -1,0 +1,24 @@
+#!/bin/bash
+
+
+function randpass {
+	passlength=6
+	[ ! -z "$1" ] && passlength=$1
+	printf "%s\n" `< /dev/urandom tr -dc A-Za-z0-9 | head -c$passlength`
+}
+
+
+
+function showlog  {
+     less +G $(ls -ctr1 $1/* | tail -1)
+ }
+
+
+function switchknife {
+    if [ ! -f ~/.chef/knife-$1.rb ]; then
+        echo "No such environment $1"
+    else
+        ln -sf knife-$1.rb ~/.chef/knife.rb
+    fi
+}
+

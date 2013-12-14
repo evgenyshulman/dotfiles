@@ -1,8 +1,5 @@
 # Make vim the default editor
 
-export PATH="/usr/lib/jvm/jdk1.7.0_40/bin:/home/evgeny/soft/adt-bundle-linux-x86_64-20130917/sdk/platform-tools:/home/evgeny/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:~/bin:~/soft/elastic-mapreduce-ruby:~/bin:~/bin"
-# export MANPATH="/usr/local/man:$MANPATH"
-
 
 export EDITOR="vim"
 
