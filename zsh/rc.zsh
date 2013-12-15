@@ -29,7 +29,7 @@ if [[ -e $omz_dir/oh-my-zsh.sh ]] then
 	    ZSH_THEME="robbyrussell"
         #ZSH_THEME="jreese"
 	fi
-	plugins+=(ant cake coffee extract history-substring-search pip colored-man)
+	plugins+=(extract git history-substring-search pip colored-man tmuxinator tmux )
 	if [[ $system == 'Linux' ]]; then
 		plugins+=()
 	fi
