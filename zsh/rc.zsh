@@ -37,9 +37,17 @@ if [[ -e $omz_dir/oh-my-zsh.sh ]] then
 		plugins+=(brew terminalapp osx)
 	fi
 	source $omz_dir/oh-my-zsh.sh
+
 	unsetopt correct_all
+	unsetopt sharehistory
+
 	# Disable the automatic titling, it screws up tmux
 	DISABLE_AUTO_TITLE=true
+
+    bindkey "^[[1;7C" forward-word
+    bindkey "^[[1;7D" backward-word
+
+
 fi
 unset omz_dir
 
