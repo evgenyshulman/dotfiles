@@ -3,11 +3,6 @@ rcfiles=$HOME/.homesick/repos/dotfiles
 
 system=`$rcfiles/system`
 
-
-if [ -f ~/.exports ]; then
-	source ~/.exports
-fi
-
 if [ -f ~/.localenv ]; then
 	source ~/.localenv
 fi

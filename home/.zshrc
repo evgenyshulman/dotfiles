@@ -13,20 +13,28 @@ if $trace; then
 fi
 
 
-
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
-
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
 # Customize to your needs...
+if [[ -s "${ZDOTDIR:-$HOME}/.aliases" ]]; then
+  source "${ZDOTDIR:-$HOME}/.aliases"
+fi
+
+# homeshick stuff
+if [ -f $HOME/.homesick/repos/homeshick/homeshick.sh ]; then
+    source $HOME/.homesick/repos/homeshick/homeshick.sh
+    # Check if castles need refreshing
+    homeshick --quiet refresh 14 $HOMESHICK_REFRESH_REPOS
+    fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
+fi
+
+# dotfiles stuff
+if [[ -d $HOME/.homesick/repos/dotfiles/ ]]; then
+    fpath=($HOME/.homesick/repos/dotfiles/completions $fpath)
+fi
 
 
 

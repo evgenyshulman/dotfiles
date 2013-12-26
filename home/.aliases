@@ -1,0 +1,45 @@
+#!/bin/bash
+
+alias ping='ping -c 5'
+alias fastping='ping -c 100 -s.2'
+alias ports='netstat -tulanp'
+
+
+alias chown='chown --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chgrp='chgrp --preserve-root'
+alias apt-get="sudo apt-get"
+
+
+alias root='sudo -i'
+alias su='sudo -i'
+
+alias meminfo='free -m -l -t'
+alias psmem='ps auxf | sort -nr -k 4'
+alias psmem10='ps auxf | sort -nr -k 4 | head -10'
+alias pscpu='ps auxf | sort -nr -k 3'
+alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
+
+
+
+function randpass {
+	passlength=6
+	[ ! -z "$1" ] && passlength=$1
+	printf "%s\n" `< /dev/urandom tr -dc A-Za-z0-9 | head -c$passlength`
+}
+
+
+
+function showlog  {
+     less +G $(ls -ctr1 $1/* | tail -1)
+ }
+
+
+function switchknife {
+    if [ ! -f ~/.chef/knife-$1.rb ]; then
+        echo "No such environment $1"
+    else
+        ln -sf knife-$1.rb ~/.chef/knife.rb
+    fi
+}
+
