@@ -32,7 +32,7 @@ alias ping='ping -c 5'
 alias fastping='ping -c 100 -s.2'
 alias ports='netstat -tulanp'
 
-alias rm='rm -I --preserve-root'
+alias rm='rm -i --preserve-root'
 alias mv='mv -i'
 alias cp='cp -i'
 alias ln='ln -i'

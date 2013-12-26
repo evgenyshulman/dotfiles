@@ -17,39 +17,15 @@ homeshick --quiet refresh 14 $HOMESHICK_REFRESH_REPOS
 fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
 
 
-
 system=`$DOTFILES_HOME/system`
-omz_dir=$HOME/.homesick/repos/oh-my-zsh
 
-if [[ -e $omz_dir/oh-my-zsh.sh ]] then
-	export ZSH=$omz_dir
-	# Let homeshick handle the updating
-	DISABLE_AUTO_UPDATE="true"
-	if [[ -z "$ZSH_THEME" ]] then
-	    ZSH_THEME="robbyrussell"
-        #ZSH_THEME="jreese"
-	fi
-	plugins+=(extract git history-substring-search pip colored-man tmuxinator tmux )
-	if [[ $system == 'Linux' ]]; then
-		plugins+=()
-	fi
-	if [[ $system == 'OSX' ]]; then
-		plugins+=(brew terminalapp osx)
-	fi
-	source $omz_dir/oh-my-zsh.sh
+unsetopt sharehistory
 
-	unsetopt correct_all
-	unsetopt sharehistory
+# Disable the automatic titling, it screws up tmux
+DISABLE_AUTO_TITLE=true
 
-	# Disable the automatic titling, it screws up tmux
-	DISABLE_AUTO_TITLE=true
-
-    bindkey "^[[1;7C" forward-word
-    bindkey "^[[1;7D" backward-word
-
-
-fi
-unset omz_dir
+bindkey "^[[1;7C" forward-word
+bindkey "^[[1;7D" backward-word
 
 if [[ $system == 'Linux' ]]; then
 	source $DOTFILES_HOME/zsh/rc.linux.zsh
