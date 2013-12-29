@@ -48,6 +48,7 @@ zstyle ':prezto:load' pmodule \
 #
 # Editor
 #
+zstyle ':prezto:module:prompt' theme 'pureline'
 
 # Set the key mapping style to 'emacs' or 'vi'.
 zstyle ':prezto:module:editor' key-bindings 'vi'
@@ -82,31 +83,6 @@ zstyle ':prezto:module:editor' dot-expansion 'yes'
 # Set the search globbing flags.
 # zstyle ':prezto:module:history-substring-search' globbing-flags ''
 
-#
-# Pacman
-#
-
-# Set the Pacman frontend.
-# zstyle ':prezto:module:pacman' frontend 'yaourt'
-
-#
-# Prompt
-#
-
-# Set the prompt theme to load.
-# Setting it to 'random' loads a random theme.
-# Auto set to 'off' on dumb terminals.
-zstyle ':prezto:module:prompt' theme 'pureline'
-
-#
-# Screen
-#
-
-# Auto start a session when Zsh is launched in a local terminal.
-# zstyle ':prezto:module:screen:auto-start' local 'yes'
-
-# Auto start a session when Zsh is launched in a SSH connection.
-# zstyle ':prezto:module:screen:auto-start' remote 'yes'
 
 #
 # SSH
@@ -122,11 +98,11 @@ zstyle ':prezto:module:prompt' theme 'pureline'
 # Set syntax highlighters.
 # By default, only the main highlighter is enabled.
  zstyle ':prezto:module:syntax-highlighting' highlighters \
-   'main' \
-   'brackets' \
-   'pattern' \
-   'cursor' \
-   'root'
+   'main'
+#   'brackets' \
+#   'pattern' \
+#   'cursor' \
+#   'root'
 #
 # Set syntax highlighting styles.
 # zstyle ':prezto:module:syntax-highlighting' styles \

@@ -80,7 +80,7 @@ function prompt_pureline_setup {
   zstyle ':prezto:module:python:info:virtualenv' format '(%v)'
 
   # Define prompts.
-  PROMPT='%F{cyan}${_prompt_pureline_pwd}%B%F{red}${SSH_TTY:+[%n@%m]}%(!. %B%F{red}#%f%b.)${editor_info[keymap]} '
+  PROMPT='%F{cyan}%B${_prompt_pureline_pwd}%B%F{red}${SSH_TTY:+[%n@%m]}%(!. %B%F{red}#%f%b.)${editor_info[keymap]} '
   RPROMPT='${editor_info[overwrite]}%(?:: %F{red}⏎%f)${VIM:+" %B%F{green}V%f%b"}%f%B$python_info[virtualenv]%B${git_info:+${(e)git_info[prompt]}}${git_info[rprompt]}'
   SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 }
