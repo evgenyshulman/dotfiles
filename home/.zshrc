@@ -36,6 +36,7 @@ if [[ -d $HOME/.homesick/repos/dotfiles/ ]]; then
     fpath=($HOME/.homesick/repos/dotfiles/completions $fpath)
 fi
 
+unsetopt    SHARE_HISTORY
 
 
 if $trace; then
