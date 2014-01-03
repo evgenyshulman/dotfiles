@@ -1,39 +1,26 @@
 #
-# A simple theme that displays relevant, contextual information.
+# A simple theme that displays only relevant information.
 #
 # Authors:
-#   pureline Ionescu <pureline.ionescu@gmail.com>
+#   Julien Nicoulaud <julien.nicoulaud@gmail.com>
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+# Features:
+#   - One line.
+#   - VCS information in the right prompt.
+#   - Only shows the path on the left prompt by default.
+#   - Crops the path to a defined length and only shows the path relative to
+#     the current VCS repository root.
+#   - Uses a different color depending on if the last command succeeded/failed.
+#   - Shows user@hostname if connected through SSH.
+#   - Shows if logged in as root or not.
 #
 # Screenshots:
-#   http://i.imgur.com/nBEEZ.png
+#   http://i.imgur.com/Xe1bu.png
 #
 
-# Load dependencies.
-pmodload 'helper'
-
-function prompt_pureline_pwd {
-  local pwd="${PWD/#$HOME/~}"
-
-  if [[ "$pwd" == (#m)[/~] ]]; then
-    _prompt_pureline_pwd="$MATCH"
-    unset MATCH
-  else
-    _prompt_pureline_pwd="${${${(@j:/:M)${(@s:/:)pwd}##.#?}:h}%/}/${pwd:t}"
-  fi
-}
-
 function prompt_pureline_precmd {
-  setopt LOCAL_OPTIONS
-  unsetopt XTRACE KSH_ARRAYS
-
-  # Format PWD.
-  prompt_pureline_pwd
-
-  # Get Git repository information.
-  if (( $+functions[git-info] )); then
-    git-info
-  fi
-
+  vcs_info
   if (( $+functions[python-info] )); then
     python-info
   fi
@@ -46,43 +33,35 @@ function prompt_pureline_setup {
 
   # Load required functions.
   autoload -Uz add-zsh-hook
+  autoload -Uz vcs_info
 
-  # Add hook for calling git-info before each command.
+  # Add hook for calling vcs_info before each command.
   add-zsh-hook precmd prompt_pureline_precmd
 
-  # Set editor-info parameters.
-  zstyle ':prezto:module:editor:info:completing' format '%B%F{red}...%f%b'
-  zstyle ':prezto:module:editor:info:keymap:primary' format ' %B%F{red}❯%F{yellow}❯%F{green}❯%f%b'
-  zstyle ':prezto:module:editor:info:keymap:primary:overwrite' format ' %F{red}♺%f'
-  zstyle ':prezto:module:editor:info:keymap:alternate' format ' %B%F{green}❮%F{yellow}❮%F{red}❮%f%b'
-  
-  # Set git-info parameters.
-  zstyle ':prezto:module:git:info' verbose 'yes'
-  zstyle ':prezto:module:git:info:action' format ':%%B%F{yellow}%s%f%%b'
-  zstyle ':prezto:module:git:info:added' format ' %%B%F{green}✚%f%%b'
-  zstyle ':prezto:module:git:info:ahead' format ' %%B%F{yellow}⬆%f%%b'
-  zstyle ':prezto:module:git:info:behind' format ' %%B%F{yellow}⬇%f%%b'
-  zstyle ':prezto:module:git:info:branch' format ':%F{green}%b%f'
-  zstyle ':prezto:module:git:info:commit' format ':%F{green}%.7c%f'
-  zstyle ':prezto:module:git:info:deleted' format ' %%B%F{red}✖%f%%b'
-  zstyle ':prezto:module:git:info:modified' format ' %%B%F{blue}✱%f%%b'
-  zstyle ':prezto:module:git:info:position' format ':%F{red}%p%f'
-  zstyle ':prezto:module:git:info:renamed' format ' %%B%F{magenta}➜%f%%b'
-  zstyle ':prezto:module:git:info:stashed' format ' %%B%F{cyan}✭%f%%b'
-  zstyle ':prezto:module:git:info:unmerged' format ' %%B%F{yellow}═%f%%b'
-  zstyle ':prezto:module:git:info:untracked' format ' %%B%F{white}◼%f%%b'
-  zstyle ':prezto:module:git:info:keys' format \
-    'prompt' ' %F{blue}git%f$(coalesce "%b" "%p" "%c")%s' \
-    'rprompt' '%A%B%S%a%d%m%r%U%u'
+  # Customizable parameters.
+  local max_path_chars=30
+  local user_char='❯'
+  local root_char='❯❯❯'
+  local success_color='%F{071}'
+  local failure_color='%F{124}'
+  local vcs_info_color='%F{242}'
+
+  # Set vcs_info parameters.
+  zstyle ':vcs_info:*' enable bzr git hg svn
+  zstyle ':vcs_info:*' check-for-changes true
+  zstyle ':vcs_info:*' unstagedstr '!'
+  zstyle ':vcs_info:*' stagedstr '+'
+  zstyle ':vcs_info:*' actionformats "%S" "%r/%s/%b %u%c (%a)"
+  zstyle ':vcs_info:*' formats "%S" "%r/%s/%b %u%c"
+  zstyle ':vcs_info:*' nvcsformats "%~" ""
 
 
   # Set python-info parameters.
   zstyle ':prezto:module:python:info:virtualenv' format '(%v)'
 
   # Define prompts.
-  PROMPT='%F{cyan}%B${_prompt_pureline_pwd}%B%F{red}${SSH_TTY:+[%n@%m]}%(!. %B%F{red}#%f%b.)${editor_info[keymap]} '
-  RPROMPT='${editor_info[overwrite]}%(?:: %F{red}⏎%f)${VIM:+" %B%F{green}V%f%b"}%f%B$python_info[virtualenv]%B${git_info:+${(e)git_info[prompt]}}${git_info[rprompt]}'
-  SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
+  PROMPT="%(?.${success_color}.${failure_color})${SSH_TTY:+[%n@%m]}%B%${max_path_chars}<...<"'${vcs_info_msg_0_%%.}'"%<<%(!.${root_char}.${user_char})%b%f "
+  RPROMPT='%f%B$python_info[virtualenv]${SSH_TTY:+[%n@%m]}'"${vcs_info_color}"'${vcs_info_msg_1_}'"%f"
 }
 
 prompt_pureline_setup "$@"
