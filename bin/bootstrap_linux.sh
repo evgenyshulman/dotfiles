@@ -31,27 +31,10 @@ EOF
 ### Set SSH_AUTH_SOCK etc. ###
 eval `ssh-agent -s`
 
-### Deploy private dotfiles ###
-cat > .dotfiles-deploy-key <<EOF
------BEGIN RSA PRIVATE KEY-----
-MII.............................................................
-................................................................
-.....................==
------END RSA PRIVATE KEY-----
-EOF
-chmod 600 .dotfiles-deploy-key
-ssh-add .dotfiles-deploy-key
-
 homeshick --batch clone https://github.com/evgenyshulman/dotfiles.git
-
-
-
-ssh-add -D
-rm .dotfiles-deploy-key
 
 ### Clone public repos ###
 homeshick --batch clone https://github.com/sorin-ionescu/prezto.git
-
 
 ### Link it all to $HOME ###
 homeshick link --force
