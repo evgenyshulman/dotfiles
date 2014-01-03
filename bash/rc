@@ -1,7 +1,7 @@
 #!/bin/bash
 rcfiles=$HOME/.homesick/repos/dotfiles
 
-system=`$rcfiles/system`
+#system=`$rcfiles/bash/system`
 
 if [ -f ~/.localenv ]; then
 	source ~/.localenv
@@ -31,8 +31,8 @@ fi
 
 source $rcfiles/bash/completion
 
-source $rcfiles/aliases
-source $rcfiles/tools
+#source $rcfiles/aliases
+#source $rcfiles/tools
 
 if [[ -f ~/.dir_colors && ( -x /usr/local/bin/dircolors || -x /usr/bin/dircolors ) ]]; then
     eval `dircolors ~/.dir_colors`

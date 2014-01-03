@@ -36,8 +36,11 @@ homeshick --batch clone https://github.com/evgenyshulman/dotfiles.git
 ### Clone public repos ###
 homeshick --batch clone https://github.com/sorin-ionescu/prezto.git
 
+### Ling prezto
+ln -s $HOME/.homesick/repos/prezto $HOME/.zprezto/
+
 ### Link it all to $HOME ###
-homeshick link --force
+homeshick link
 
 ### Set default shell to your favorite shell ###
 $chsh --shell /bin/zsh `whoami`
