@@ -41,7 +41,7 @@ function prompt_pureline_setup {
   # Customizable parameters.
   local max_path_chars=30
   local user_char='❯'
-  local root_char='#'
+  local root_char='❯❯❯'
   local success_color='%F{071}'
   local failure_color='%F{124}'
   local vcs_info_color='%F{242}'
