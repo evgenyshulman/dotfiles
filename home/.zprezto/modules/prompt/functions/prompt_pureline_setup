@@ -41,7 +41,7 @@ function prompt_pureline_setup {
   # Customizable parameters.
   local max_path_chars=30
   local user_char='❯'
-  local root_char='❯❯❯'
+  local root_char='#'
   local success_color='%F{071}'
   local failure_color='%F{124}'
   local vcs_info_color='%F{242}'
@@ -60,7 +60,7 @@ function prompt_pureline_setup {
   zstyle ':prezto:module:python:info:virtualenv' format '(%v)'
 
   # Define prompts.
-  PROMPT="%(?.%{${success_color}%}.%{${failure_color}%})%B%${max_path_chars}<...<"'${vcs_info_msg_0_%%.}'"%<<%(!.${root_char}.${user_char})%b%f"
+  PROMPT="%(?.%{${success_color}%}.%{${failure_color}%})%B%${max_path_chars}<...<"'${vcs_info_msg_0_%%.}'"%<<%(!.${root_char}.${user_char})%b%f "
   RPROMPT='%f%B$python_info[virtualenv]'"%F{${vcs_info_color}%}"'${vcs_info_msg_1_}%f%B${SSH_TTY:+[%n@%m]}%b'"%f"
 }
 
