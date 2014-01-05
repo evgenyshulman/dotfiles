@@ -30,7 +30,9 @@ export PAGER='less'
 #
 
 if [[ -z "$LANG" ]]; then
-  export LANG='en_US.UTF-8'
+    if [[ "$OSTYPE" == darwin* ]]; then
+      export LANG='en_US.UTF-8'
+    fi
 fi
 
 #
