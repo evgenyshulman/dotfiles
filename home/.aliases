@@ -4,15 +4,13 @@ alias ping='ping -c 5'
 alias fastping='ping -c 100 -s.2'
 alias ports='netstat -tulanp'
 
-alias dl='docker ps -l -q'
+# Pipe anything into `clip` to forward it to Clipper
+alias clip="nc localhost 8377"
+alias sshc="ssh -R localhost:8377:localhost:8377"
 
+alias vagrantssh="vagrant ssh -- -R localhost:8377:localhost:8377"
 
-alias chown='chown --preserve-root'
-alias chmod='chmod --preserve-root'
-alias chgrp='chgrp --preserve-root'
 alias apt-get="sudo apt-get"
-
-alias dl='docker ps -l -q'
 
 alias root='sudo -i'
 alias su='sudo -i'

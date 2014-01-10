@@ -65,6 +65,10 @@ nmap <leader>w :w!<cr>
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
 
+" # Bind <leader>y to forward last-yanked text to Clipper
+nnoremap <leader>y :call system('nc localhost 8377', @0)<CR>
+
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
