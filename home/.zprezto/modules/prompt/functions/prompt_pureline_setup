@@ -52,7 +52,7 @@ function prompt_pureline_setup {
   zstyle ':vcs_info:*' unstagedstr '!'
   zstyle ':vcs_info:*' stagedstr '+'
   zstyle ':vcs_info:*' actionformats "%S" "%r/%s/%b %u%c (%a)"
-  zstyle ':vcs_info:*' formats "%S" "%{%F{118}%}%r%{${vcs_info_color}%}/%s/%b %u%c"
+  zstyle ':vcs_info:*' formats "%{%F{118}%}%r/%{${success_color}%}%S" "%{${vcs_info_color}%}%s:/%b %u%c"
   zstyle ':vcs_info:*' nvcsformats "%~" ""
 
 
