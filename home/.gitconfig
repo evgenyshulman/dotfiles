@@ -1,6 +1,6 @@
 [user]
 	name = Shulman Evgeny
-	email =  evgeny@everything.me
+	email = evgeny@everything.me
 
 [credential]
          #        helper = GIT_CREDENTIAL_HELPER
@@ -17,7 +17,7 @@
         branch = auto
         ui = true
 [core]
-        excludesfile = ~/.gitignore
+	excludesfile = /Users/shulman/.gitignore
         editor = vim
 	autocrlf = input
 [apply]
@@ -29,3 +29,10 @@
 [push]
         # See `git help config` (search for push.default)
         # for more information on different options of the below setting.
+        default = simple
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 alias ping='ping -c 5'
 alias fastping='ping -c 100 -s.2'
 alias ports='netstat -tulanp'
