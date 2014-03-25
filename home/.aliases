@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 alias ping='ping -c 5'
 alias fastping='ping -c 100 -s.2'
@@ -23,6 +22,8 @@ alias psmem10='ps auxf | sort -nr -k 4 | head -10'
 alias pscpu='ps auxf | sort -nr -k 3'
 alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
 
+alias s3get='s3cmd get'
+alias s3set='s3cmd set'
 
 
 function randpass {
