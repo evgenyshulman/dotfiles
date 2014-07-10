@@ -47,3 +47,9 @@ function switchknife {
     fi
 }
 
+st () {
+	 add-zsh-hook  -D preexec _terminal-set-titles-with-command
+	 add-zsh-hook  -D precmd  _terminal-set-titles-with-path
+    set-window-title $1
+    set-tab-title $1
+}
