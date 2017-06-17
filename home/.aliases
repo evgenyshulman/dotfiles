@@ -23,8 +23,32 @@ alias psmem10='ps auxf | sort -nr -k 4 | head -10'
 alias pscpu='ps auxf | sort -nr -k 3'
 alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
 
-alias s3get='s3cmd get'
-alias s3set='s3cmd set'
+alias gw='./gradlew'
+
+
+alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
+alias s3="aws s3"
+alias s3-ls="aws s3 ls --summarize  --human-readable"
+alias s3-cp="aws s3 cp"
+alias s3-cp-dir="aws s3 cp --recursive"
+
+s3-cat() {
+ s3 cp $1 -
+}
+
+
+
+pipe-idea(){
+    tmpfile=$(mktemp /tmp/abc-script.XXXXXX)
+    less <&0 >$tmpfile
+    idea $tmpfile%
+}
+
+s3-idea() {
+ s3-cat $1  | pipe-idea
+}
+
+
 
 
 function randpass {

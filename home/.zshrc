@@ -1,5 +1,6 @@
 #!/bin/zsh
 trace=false
+# trace=true
 if $trace; then
 	start=$(gdate "+%s%N")
 	# set the trace prompt to include seconds, nanoseconds, script name and line number
@@ -27,7 +28,7 @@ fi
 if [ -f $HOME/.homesick/repos/homeshick/homeshick.sh ]; then
     source $HOME/.homesick/repos/homeshick/homeshick.sh
     # Check if castles need refreshing
-    homeshick --quiet refresh 14 $HOMESHICK_REFRESH_REPOS
+    # homeshick --quiet refresh 14 $HOMESHICK_REFRESH_REPOS
     fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
 fi
 
