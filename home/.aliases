@@ -51,6 +51,11 @@ s3-idea() {
 
 
 
+function cdd {
+   cd $PROJECT_HOME
+   [ ! -z "$1" ] && cd $1
+ }
+
 function randpass {
 	passlength=6
 	[ ! -z "$1" ] && passlength=$1
@@ -126,3 +131,25 @@ st () {
  # Show all alias related docker
  dalias() { alias | grep 'docker' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g" | sort; }
  
+
+
+function set-venv-name {
+  # Check if this is a Git repo
+  local GIT_REPO_ROOT=""
+  local GIT_TOPLEVEL="$(git rev-parse --show-toplevel 2> /dev/null)"
+  if [[ $? == 0 ]]; then
+    GIT_REPO_ROOT="$GIT_TOPLEVEL"
+  fi
+  # Get absolute path, resolving symlinks
+  local PROJECT_ROOT="${PWD:A}"
+  while [[ "$PROJECT_ROOT" != "/" && ! -e "$PROJECT_ROOT/.venv" \
+            && ! -d "$PROJECT_ROOT/.git"  && "$PROJECT_ROOT" != "$GIT_REPO_ROOT" ]]; do
+    PROJECT_ROOT="${PROJECT_ROOT:h}"
+  done
+  if [[ "$PROJECT_ROOT" == "/" ]]; then
+    PROJECT_ROOT="."
+  fi
+  local PROJECT_NAME=$(basename $PROJECT_ROOT)
+  echo $PROJECT_NAME > venv/name
+
+}

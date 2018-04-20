@@ -18,6 +18,9 @@ zstyle ':prezto:*:*' color 'yes'
 # Auto set the tab and window titles.
 zstyle ':prezto:module:terminal' auto-title 'yes'
 
+# auto-switching to virtualenvs when switching into a directory where the root of the project matches a virtualenv name.
+zstyle ':prezto:module:python:virtualenv' auto-switch 'yes'
+
 # Set the Zsh modules to load (man zshmodules).
 # zstyle ':prezto:load' zmodule 'attr' 'stat'
 
