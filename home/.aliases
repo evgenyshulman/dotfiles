@@ -77,6 +77,11 @@ function switchknife {
     fi
 }
 
+realpath() {
+    [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+}
+
+
 st () {
 	 add-zsh-hook  -D preexec _terminal-set-titles-with-command
 	 add-zsh-hook  -D precmd  _terminal-set-titles-with-path
