@@ -6,7 +6,7 @@ if $trace; then
 	# set the trace prompt to include seconds, nanoseconds, script name and line number
 	# PS4='$(($(date "+%s%N")-$start))	%N:%i	'
 	PS4='$(($(gdate "+%s%N")-$start)) %N:%i> '
-	# save file stderr to file descriptor 3 and redirect stderr (including trace 
+	# save file stderr to file descriptor 3 and redirect stderr (including trace
 	# output) to a file with the script's PID as an extension
 	exec 3>&2 2>/tmp/startlog.$$
 	# set options to turn on tracing and expansion of commands contained in the prompt
@@ -38,7 +38,8 @@ if [[ -d $HOME/.homesick/repos/dotfiles/ ]]; then
 fi
 
 unsetopt    SHARE_HISTORY
-
+# Appends every command to the history file once it is executed
+setopt inc_append_history
 
 if $trace; then
 	# turn off tracing
